@@ -6,7 +6,7 @@ services:
     ports:
     - '3306:3306'
     volumes:
-    - ~/.config/gcloud:/root/.config/gcloud
+    - "~/.config/gcloud:/root/.config/gcloud"
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     ports:
