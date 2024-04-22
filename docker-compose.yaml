@@ -1,12 +1,14 @@
-version: '3'
 services:
   db:
-    image: gcr.io/cloudsql-docker/gce-proxy:1.11
-    command: /cloud_sql_proxy -instances ${INSTANCES}
+    image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.10.1
+    command: --address 0.0.0.0 --port 3306 --run-connection-test --debug ${INSTANCES}
+    environment:
+    - GOOGLE_APPLICATION_CREDENTIALS=/etc/application_default_credentials.json
     ports:
     - '3306:3306'
     volumes:
     - "~/.config/gcloud:/root/.config/gcloud"
+    - "~/.config/gcloud/application_default_credentials.json:/etc/application_default_credentials.json"
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     ports:
