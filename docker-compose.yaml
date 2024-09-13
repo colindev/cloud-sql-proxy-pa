@@ -13,4 +13,6 @@ services:
     image: phpmyadmin/phpmyadmin
     ports:
     - '8080:80'
-
+  mysql-client:
+    image: mysql:latest
+    command: bash -c 'sleep infinity'
